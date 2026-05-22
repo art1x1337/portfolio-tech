@@ -4,7 +4,7 @@
   "description": "PixiJS + Skia (CanvasKit) renderer with PDF export",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
