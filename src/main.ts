@@ -165,11 +165,12 @@ async function main(): Promise<void> {
   // We sync the Skia mirror on every PIXI tick so they stay in lockstep.
 
   function renderSkia(): void {
-    const skCanvas = surface.getCanvas()
-    skCanvas.clear(ck.Color4f(0.039, 0.039, 0.059, 1)) // #0a0a0f
-    convertPixiContainerToSkia(ck, skCanvas, activeScene)
-    surface.flush()
-  }
+  if (!surface) return
+  const skCanvas = surface.getCanvas()
+  skCanvas.clear(ck.Color4f(0.039, 0.039, 0.059, 1))
+  convertPixiContainerToSkia(ck, skCanvas, activeScene)
+  surface.flush()
+}
 
   // FPS counter
   let frameCount = 0

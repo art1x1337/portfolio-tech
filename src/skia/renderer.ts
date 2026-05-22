@@ -16,7 +16,7 @@
  */
 
 import * as PIXI from 'pixi.js-legacy'
-import type { CanvasKit, SkCanvas, SkPaint, SkPath } from './types'
+import type { CanvasKit, SkCanvas, SkPath } from './types'
 import { buildLocalMatrix } from './matrixUtils'
 import { toSkiaColor } from './colorUtils'
 

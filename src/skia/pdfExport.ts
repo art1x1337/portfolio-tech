@@ -60,7 +60,7 @@ function downloadBytes(
   filename: string,
   mimeType: string
 ): void {
-  const blob = new Blob([bytes], { type: mimeType })
+  const blob = new Blob([bytes.buffer as ArrayBuffer], { type: mimeType })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url

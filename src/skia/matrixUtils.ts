@@ -20,7 +20,7 @@ import type { CanvasKit } from './types'
  * Mirrors PIXI's own transform calculation:
  *   T(position) · R(angle) · S(scale) · T(-pivot)
  */
-export function buildLocalMatrix(ck: CanvasKit, obj: PIXI.DisplayObject): Float32Array {
+export function buildLocalMatrix(_ck: CanvasKit, obj: PIXI.DisplayObject): Float32Array {
   const transform = obj.transform
 
   const px = transform.pivot.x
