@@ -147,14 +147,13 @@ async function main(): Promise<void> {
   btnExport.addEventListener('click', () => {
     btnExport.disabled = true
     btnExport.textContent = '⏳ Exporting…'
-    try {
-      exportToPDF(ck, activeScene, CANVAS_W, CANVAS_H, `scene-${Date.now()}.pdf`)
-    } finally {
-      setTimeout(() => {
-        btnExport.disabled = false
-        btnExport.textContent = '⬇ Export PDF'
-      }, 800)
-    }
+    exportToPDF(ck, activeScene, CANVAS_W, CANVAS_H, `scene-${Date.now()}.pdf`)
+      .finally(() => {
+        setTimeout(() => {
+          btnExport.disabled = false
+          btnExport.textContent = '⬇ Export PDF'
+        }, 800)
+      })
   })
 
   // ── 9. Event log overlay ──────────────────────────────────────────────────
@@ -165,12 +164,12 @@ async function main(): Promise<void> {
   // We sync the Skia mirror on every PIXI tick so they stay in lockstep.
 
   function renderSkia(): void {
-  if (!surface) return
-  const skCanvas = surface.getCanvas()
-  skCanvas.clear(ck.Color4f(0.039, 0.039, 0.059, 1))
-  convertPixiContainerToSkia(ck, skCanvas, activeScene)
-  surface.flush()
-}
+    if (!surface) return
+    const skCanvas = surface.getCanvas()
+    skCanvas.clear(ck.Color4f(0.039, 0.039, 0.059, 1)) // #0a0a0f
+    convertPixiContainerToSkia(ck, skCanvas, activeScene)
+    surface.flush()
+  }
 
   // FPS counter
   let frameCount = 0
