@@ -24,7 +24,7 @@ function loadViaScriptTag(): Promise<CanvasKit> {
   return new Promise((resolve, reject) => {
     // canvaskit.js sets window.CanvasKitInit when loaded as a plain script
     const script = document.createElement('script')
-    script.src = '/node_modules/canvaskit-wasm/bin/canvaskit.js'
+    script.src = 'https://unpkg.com/canvaskit-wasm@0.39.1/bin/canvaskit.js'
     script.onload = async () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const init = (window as any).CanvasKitInit
@@ -38,8 +38,7 @@ function loadViaScriptTag(): Promise<CanvasKit> {
       }
       try {
         const ck = await init({
-          locateFile: (file: string) =>
-            `/node_modules/canvaskit-wasm/bin/${file}`,
+          locateFile: (file: string) => `https://unpkg.com/canvaskit-wasm@0.39.1/bin/${file}`,
         })
         resolve(ck)
       } catch (e) {
